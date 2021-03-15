@@ -1,9 +1,9 @@
-namespace hl7_mapper_demo
+namespace DemoMapper
 {
     using System;
     using HL7.Dotnetcore;
 
-    class Hl7Logger
+    public class Hl7Logger
     {
         Action<string> _appender;
         Message _message;

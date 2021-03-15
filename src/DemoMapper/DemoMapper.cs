@@ -1,4 +1,4 @@
-namespace hl7_mapper_demo 
+namespace DemoMapper 
 {
     using System;
     using System.Globalization;
@@ -6,7 +6,7 @@ namespace hl7_mapper_demo
     using HL7.Dotnetcore;
     using System.Collections.Generic;
 
-    class DemoMapper 
+    public class DemoMapper 
     {
         Hl7Logger _logger;
         Message _message;
@@ -177,9 +177,15 @@ namespace hl7_mapper_demo
             };
 
             return new Bundle {
+                Identifier = new Identifier {
+                    Value = Guid.NewGuid().ToString(),
+                },
                 TypeElement = new Code<Bundle.BundleType>(Bundle.BundleType.Transaction),
                 Entry = new List<Bundle.EntryComponent> {
                     new Bundle.EntryComponent {
+                        Request = new Bundle.RequestComponent {
+                            Method = Bundle.HTTPVerb.POST
+                        },
                         Resource = patient
                     }
                 }
